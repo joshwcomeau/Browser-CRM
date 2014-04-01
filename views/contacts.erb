@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CRM 0.0.0.1</title>
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700|Fredoka+One|Gafata' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+
+  <body>
+    <div id="">
+
+    </div>
+    <div id="wrapper_outer"><div id="wrapper_inner">
+      <header>
+        <h1><%= @app_name %></h1>
+      </header>
+      <section id="status_side">
+        Viewing All Contacts
+      </section>
+      <section id="contacts">
+        <ul class="contacts_list">
+          <% @contacts.each do |c| %>
+          <li>
+            <div class="c_id_div"><a href="/contacts/<%= c.id %>/edit" class="c_id_link"><%= c.id %></a></div>
+            <h3 class="c_name"><a href="/contacts/<%= c.id %>/edit"><%= c.name %></a></h3>
+            <p class="c_email"><%= c.email %></p>
+            <ol id="notes_list">
+              <% c.notes.each do |note| %>
+              <li><%= note %></li>
+              <% end %>
+            </ol>
+            <p class="c_dates">
+              <strong>Date Created:</strong> <%= c.created %><br>
+              <strong>Date Modified:</strong> <%= c.modified %>
+          </li>
+          <% end %>
+
+          <li id="add_contact_list_item" style="border:0px;"><a href="/add">+</a></li>
+
+        </ul>
+      </section>
+    </div></div>
+  </body>
+</html>

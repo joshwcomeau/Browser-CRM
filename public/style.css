@@ -36,14 +36,108 @@ header h1 {
   text-align: center;
 }
 
-#status {
-  font-size: 16px;
-  margin: 20px;
-  text-align: center;
-}
-
 .highlight {
   padding: 6px;
   border-radius: 4px;
   background: #FFEBA5;
 }
+
+
+/* HOMEPAGE */
+#crm_status {
+  font-size: 16px;
+  margin: 20px;
+  text-align: center;
+}
+
+
+/* VIEW CONTACTS */
+#status_side {
+  font-size: 26px;
+  margin: 20px;
+  text-align: center;
+}
+#contacts_list {
+  list-style-type: none;
+}
+  .contacts_list > li {
+    position: relative;
+    display:inline-block;
+    vertical-align: top;
+    width: 308px;
+    margin: 10px 8px;
+    border: 1px dotted #BBB;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+  .contacts_list > li:hover {
+  border: 1px dotted #999;
+  background: #FBFBFB;
+  }
+.c_id_div {
+  position: absolute;
+  background: #000;
+  padding: 6px;
+  font-size: 12px;
+  color: #FFF;
+  border-radius: 20px;
+  left: 10px;
+  top: 10px;
+  opacity: 0.5;
+  cursor: default;
+}
+  .c_id_link {
+    color: #FFF;
+  }
+.c_name {
+  font-size: 22px;
+  color: #006FA3;
+  text-align: center;
+}
+.c_email {
+  margin-top: 5px;
+  font-size: 15px;
+  color: #444;
+  text-align: center;
+}
+#notes_list {
+  list-style-type: decimal;
+  margin: 15px 20px;
+  font-size: 14px;
+}
+  #notes_list li {
+    margin-bottom: 15px;
+  }
+
+.c_dates {
+  font-size: 12px;
+  line-height: 1.25em;
+  text-align: center;
+  color: #AAA;
+  font-family: 'Gafata';
+}
+#add_contact_list_item {
+  border: 0px;
+  background: #CCC;
+  color: #FFF;
+  font-size: 100px;
+  height: 114px;
+  text-align: center;
+  transition: 0.25s;
+}
+  #add_contact_list_item a {
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+  }
+  #add_contact_list_item:hover {
+    background: #4EA0BA;
+    text-shadow:1px 1px 1px #000;
+    transition: 0.25s;
+  }
+
+
+
+
+
+
