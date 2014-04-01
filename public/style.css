@@ -1,0 +1,49 @@
+body {
+  background: url('wood-bg.jpg');
+  background-size: 75% 75%;
+  font-family: 'Ubuntu';
+}
+
+a {
+  color: #0095E5;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+#wrapper_outer {
+  width: 770px;
+  margin: 30px auto;
+  padding: 0px 2px 4px 0px;
+  background: #C00;
+  border-radius: 15px;
+  box-shadow: 3px 3px 5px #000;
+}
+#wrapper_inner {
+  padding: 15px;
+  margin: 0px;
+  background: #FFF;
+  min-height: 300px;
+  border-radius: 15px;
+
+}
+
+header h1 {
+  font-weight: 700;
+  font-size: 46px;
+  letter-spacing: -3px;
+  text-align: center;
+}
+
+#status {
+  font-size: 16px;
+  margin: 20px;
+  text-align: center;
+}
+
+.highlight {
+  padding: 6px;
+  border-radius: 4px;
+  background: #FFEBA5;
+}
