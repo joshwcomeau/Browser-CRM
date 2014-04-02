@@ -1,0 +1,30 @@
+<section id="view_contact_section">
+  <form action="/contacts/savechanges" method="post">
+    <div id="contact_name_div">
+      <input type="text" name="first_name" value="<%= @contact.name %>" id="contact_name">
+    </div>
+    <div id="contact_email_div">
+      <input type="text" name="email" value="<%= @contact.email %>" id="contact_email">
+    </div>
+
+    <div id="notes_holder">
+      <div id="notes_title">
+        Notes
+      </div>
+      <% 
+        length = @contact.notes.length
+        iteration = 0
+        @contact.notes.each do |note| 
+          iteration += 1
+      %>
+        <input type="text" value="<%= note %>" name="note_<%= iteration %>" class="note">
+      <% end %>
+      <input type="text" value="" name="note_<%= iteration + 1 %>" class="note" placeholder="Enter new note">
+      <input type="text" value="" name="note_<%= iteration + 2 %>" class="note" placeholder="Enter new note" style="border-bottom: 0px;">
+    </div>
+    <div id="submit_holder">
+      <input type="hidden" name="id" value="<%= @contact.id %>">
+      <input type="submit" value="Save Changes" id="contact_submit">
+    </div>
+  </form>
+</section>

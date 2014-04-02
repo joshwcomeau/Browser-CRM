@@ -10,8 +10,7 @@ class Contact
 
     @name = name.to_s
     @email = email.to_s
-    @notes = []
-    @notes << note
+    @notes = note
 
     @id = @@counter
     @created = time_format(Time.new)

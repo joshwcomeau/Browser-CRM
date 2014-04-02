@@ -1,0 +1,42 @@
+      <section id="status_side" class="bluetext">
+        Contact #<%= @id %> Added!
+      </section>
+      <section id="added_contact_section" style="min-height: 200px;">
+        <div class="added_col">
+          <div class="added_label">Contact's Name:</div>
+          <div class="added_info"><%= @name %></div>
+          
+        </div>
+        <div class="added_col">
+          <div class="added_label">Contact's Email:</div>
+          <div class="added_info"><%= @email %></div>
+        </div>
+        <div id="actions">
+          <div id="action_add" class="action">
+            <a href="/add">
+              <div class="action_line1">ADD</div>
+              <div class="action_line2">Another Contact</div>
+            </a>
+          </div>
+          <div id="action_edit" class="action">
+            <a href="/contacts/<%= @id %>/edit">
+              <div class="action_line1">EDIT</div>
+              <div class="action_line2">This Contact</div>
+            </a>
+          </div>
+          <div id="action_view" class="action">
+            <a href="/contacts">
+              <div class="action_line1">VIEW</div>
+              <div class="action_line2">All Contacts</div>
+            </a>
+          </div>
+          <div id="action_delete" class="action">
+            <a href="/contacts/<%= @id %>/kill">
+              <div class="action_line1">KILL</div>
+              <div class="action_line2">This Bastard</div>
+            </a>
+          </div>
+
+        </div>
+        
+      </section>
