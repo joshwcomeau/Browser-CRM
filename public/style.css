@@ -75,7 +75,7 @@ header h1 {
   margin: 20px;
   text-align: center;
 }
-#contacts_status {
+#status_side_contacts {
   font-size: 26px;
   margin: 20px;
   text-align: center;
@@ -188,9 +188,16 @@ header h1 {
     outline: none;
     margin-right: 5px;
   }
-
+    #search_div input[type=text]:focus {
+      border-top: 1px solid #EDCB8C;
+      border-left: 1px solid #C9AD79;
+      border-right: 1px solid #C9AD79;
+      border-bottom: 1px solid #B09A71;
+      box-shadow: 1px 1px 4px #DBA848;
+      transition: 0.2s;
+    }
   #search_submit {
-    background: #579E2E;
+    background: #6E9E2F;
     color: #FFF;
     padding: 6px 10px;
     font-size: 11px;
@@ -198,6 +205,21 @@ header h1 {
     border-radius: 5px;
     border: 0px;
     box-shadow: 1px 1px 0px #448221;
+    outline: none;
+    transition: 0.25s;
+  }
+    #search_submit:hover {
+      background: #88BD42;
+      text-shadow: 1px 1px 1px #6E9E2F;
+      transition: 0.25s;
+    }
+  #search {
+    color: #579E2E;
+  }
+  #search_num {
+    color: #333;
+    margin-top: 5px;
+    font-size: 13px;
   }
 
 
@@ -315,9 +337,11 @@ header h1 {
     color: #FFF;
     display: block;
     padding: 7px 12px 12px 12px;
+    transition: 0.25s;
   }
   .action a:hover {
     text-decoration: none;
+    transition: 0.25s;
   }
   .action_line1 {
     font-size: 42px;
@@ -400,12 +424,15 @@ header h1 {
   border: 0px;
 }
 #notes_holder {
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 25px;
   background: #EEEEEE;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 15px 15px 8px 15px;
   box-shadow: 1px 1px 0px #CCC;
-  width: 450px;
-  margin: 0 auto;
+  width: 470px;
+
 }
   #notes_title {
     color: #FFF;
@@ -414,7 +441,7 @@ header h1 {
     margin: -15px -15px 5px -15px;
     padding: 4px;
 
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 15px 15px 0px 0px;
   }
 
   .note {
@@ -427,36 +454,114 @@ header h1 {
     background: transparent;
     width:435px;
   }
+  .note:first-child {
+    border-radius: 12px 12px 0px 0px;
+  }
+  .note:last-child {
+    border-radius: 0px 0px 12px 12px;
+    border-bottom: 0px;
+  }
 #submit_holder {
+  margin-top: 10px;
+  margin-right: 15px;
   text-align: center;
-  margin: 5px;
 }
-#contact_submit {
-  width: 175px;
+
+.contact_buttons {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+  .contact_buttons a {
+    display: inline-block;
+    width: 200px;
+    height: 38px;
+    line-height: 35px;
+    margin: 0px;
+    color: #FFF;
+    font-size: 20px;
+    font-family: 'Ubuntu';
+    font-weight: 700;
+    border-bottom: 1px solid #F8F8F8;
+    border-radius: 0px;
+    outline: none;
+    transition: 0.2s;
+  }
+
+  #contact_button1 input {
+  width: 200px;
   height: 38px;
-  margin: 10px 0px 20px 0px;
+  margin: 0px;
   background: #579E2E;
   color: #FFF;
   font-size: 20px;
   font-family: 'Ubuntu';
   font-weight: 700;
-  border: 2px solid #F8F8F8;
-  border-radius: 12px;
-  box-shadow: 0px 4px 4px -4px rgba(0,0,0,0.7);
+  border: 0px;
+  border-bottom: 1px solid #F8F8F8;
+  border-radius: 15px 15px 0px 0px;
   outline: none;
+  cursor: pointer;
   transition: 0.2s;
-}
-#contact_submit:hover {
-  background: #6EB844;
-  text-shadow: 1px 1px 0px #579E2E;
-  transition: 0.2s;
-}
-#contact_submit:active {
-  background: #222;
-  transition: 0s;
-}
-#cancel_edit {
-  text-align: center;
-  font-size: 13px;
+  }
+  #contact_button1 input:hover {
+    background: #6EB844;
+    text-shadow: 1px 1px 0px #579E2E;
+    transition: 0.2s;
+  }
+  #contact_button1 input:active {
+    background: #222;
+    transition: 0s;
+  }
+  #contact_button2 a {
+    background: #DBA848;
+  }
+  #contact_button2 a:hover {
+    background: #FFC861;
+    text-shadow: 1px 1px 0px #DBA848;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  .contact_buttons a:active {
+    background: #222;
+    transition: 0s;
+  }
 
-}
+  #contact_button3 a {
+    background: #50A7E3;
+  }
+  #contact_button3 a:hover {
+    background: #70C5FF;
+    text-shadow: 1px 1px 0px #50A7E3;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  #delete_holder {
+    margin-right: 15px;
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  #contact_button4 input {
+  width: 200px;
+  height: 38px;
+  margin: 0px;
+  color: #FFF;
+  font-size: 20px;
+  font-family: 'Ubuntu';
+  font-weight: 700;
+  border: 0px;
+  border-bottom: 1px solid #F8F8F8;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+
+    background: #D9522F;
+    border-radius: 0px 0px 15px 15px;
+  }
+  #contact_button4 input:hover {
+    background: #FC623A;
+    text-shadow: 1px 1px 0px #D9522F;
+    text-decoration: none;
+    transition: 0.2s;
+  }

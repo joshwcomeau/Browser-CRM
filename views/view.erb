@@ -11,20 +11,41 @@
       <div id="notes_title">
         Notes
       </div>
+      <div id="note_iterator">
       <% 
         5.times do |iteration|
       %>
         <input type="text" value="<%= @contact.notes[iteration] %>" name="notes<%= iteration+1 %>" class="note" placeholder="Enter new note">
       <% end %>
+      </div>
     </div>
-
-    <!-- REPLACE THIS WITH THE 4-button thing: SAVE, VIEW (all contacts), CLEAR notes, KILL contact-->
     <div id="submit_holder">
       <input type="hidden" name="id" value="<%= @contact.id %>">
-      <input type="submit" value="Save Changes" id="contact_submit">
+      <input type="hidden" name="_method" value="put">
+
+      <div id="contact_button1" class="contact_buttons">
+        <input type="submit" value="Save Changes" id="contact_submit">
+      </div>
+      <div id="contact_button2" class="contact_buttons">
+        <a href="">Reset Contact</a>
+      </div>
+      <div id="contact_button3" class="contact_buttons">
+        <a href="/contacts">View Contacts</a>
+      </div>
     </div>
-    <div id="cancel_edit">
-      - <a href="/contacts">Return to Contact List</a> -
+  </form>
+  <form action="/contacts/<%= @contact.id %>/delete" method="post">
+    <input type="hidden" name="id" value="<%= @contact.id %>">
+    <input type="hidden" name="_method" value="delete">
+
+
+    <div id="delete_holder">
+      <div id="contact_button4" class="contact_buttons">
+        <input type="submit" value="Kill This Idiot" id="contact_submit">
+      </div>
     </div>
+    
+
+
   </form>
 </section>

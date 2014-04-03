@@ -13,8 +13,8 @@ class Rolodex
     @contacts.each { |contact| puts contact }
   end
 
-  def delete_contact(id)
-    @contacts.delete_if { |contact| contact.id == id }
+  def delete_contact(contact)
+    @contacts.delete(contact)
   end
 
   def grab_contact(id)

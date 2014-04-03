@@ -1,15 +1,21 @@
       <section id="status_side_contacts">
-        <div id="not_search">
+        <div id="not_search"<%= ' style="display: none;"' if @search_term %>>
           Viewing All Contacts
         </div>
-        <div id="search">
-
+        <div id="search" <%= ' style="display: none;"' unless @search_term %>>
+          Search Results
+          <div id="search_num">
+            Found <%= @results_num %> contacts that contain the term '<%= @search_term %>'.
+          </div>
         </div>
       </section>
+      <div id="delete_confirm" <%= "style='display:none;'" unless @deleted %>>
+        Contact Deleted.
+      </div>
       <section id="contacts">
         <div id="search_div">
           <form action="/contacts" method="get">
-            <input type="text" name="search" placeholder="Enter Search Term..."><input type="submit" value="Search" id="search_submit">
+            <input type="text" name="search" placeholder="Enter Search Term..." required><input type="submit" value="Search" id="search_submit">
           </form>
         </div>
         <ul class="contacts_list">
