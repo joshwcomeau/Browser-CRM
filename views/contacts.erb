@@ -1,9 +1,19 @@
-      <section id="status_side">
-        Viewing All Contacts
+      <section id="status_side_contacts">
+        <div id="not_search">
+          Viewing All Contacts
+        </div>
+        <div id="search">
+
+        </div>
       </section>
       <section id="contacts">
+        <div id="search_div">
+          <form action="/contacts" method="get">
+            <input type="text" name="search" placeholder="Enter Search Term..."><input type="submit" value="Search" id="search_submit">
+          </form>
+        </div>
         <ul class="contacts_list">
-          <% @@rolodex.contacts.each do |c| %>
+          <% @results.each do |c| %>
           <li>
             <div class="c_id_div"><a href="/contacts/<%= c.id %>/edit" class="c_id_link"><%= c.id %></a></div>
             <h3 class="c_name"><a href="/contacts/<%= c.id %>/edit"><%= c.name %></a></h3>

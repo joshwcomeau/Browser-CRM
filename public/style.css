@@ -1,4 +1,6 @@
-
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
 
 body {
   background: url('wood-bg.jpg');
@@ -32,7 +34,6 @@ a:hover {
 
 header h1 {
   background: #222;
-  color: #DBA848;
   margin: -13px -13px 0px -13px;
   padding: 10px 10px 13px 10px;
   font-weight: 700;
@@ -42,6 +43,14 @@ header h1 {
   border-radius: 15px 15px 0px 0px;
   border-bottom: 3px solid #DBA848;
 }
+  header h1 a {
+    color: #DBA848;
+    text-decoration: none;
+  }
+  header h1 a:hover {
+    color: #EDBB5C;
+    text-decoration: none;
+  }
 
 .highlight {
   padding: 6px;
@@ -66,6 +75,11 @@ header h1 {
   margin: 20px;
   text-align: center;
 }
+#contacts_status {
+  font-size: 26px;
+  margin: 20px;
+  text-align: center;
+}
 #contacts_list {
   list-style-type: none;
 }
@@ -73,8 +87,8 @@ header h1 {
     position: relative;
     display:inline-block;
     vertical-align: top;
-    width: 308px;
-    height: 130px;
+    width: 350px;
+    height: 160px;
     margin: 10px 8px;
     border: 1px dotted #DDD;
     border-radius: 5px;
@@ -141,7 +155,7 @@ header h1 {
   background: #CCC;
   color: #FFF;
   font-size: 118px;
-  height: 130px;
+  height: 160px;
   text-align: center;
   transition: 0.25s;
 }
@@ -156,6 +170,36 @@ header h1 {
     transition: 0.25s;
   }
 
+#search_div {
+  text-align: right;
+  padding-right: 15px;
+}
+  #search_div input[type=text] {
+    font-size: 12px;
+    font-family: 'Ubuntu';
+    padding: 5px;
+    line-height: 1.3em;
+    font-family: 'Ubuntu';
+    border-top: 1px solid #DDD;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #BBB;
+    border-bottom: 1px solid #AAA;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 5px;
+  }
+
+  #search_submit {
+    background: #579E2E;
+    color: #FFF;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-family: 'Ubuntu';
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: 1px 1px 0px #448221;
+  }
+
 
 
 /* ADD CONTACTS */
@@ -167,17 +211,33 @@ header h1 {
     padding: 5px;
     border-bottom: 1px dotted #CCC;
   }
-  #add_contact_section input[type=text] {
-    padding: 4px;
-    font-size: 16px;
+  #add_contact_section input[type=text], #add_contact_section input[type=email] {
+    padding: 7px;
+    font-size: 14px;
+    line-height: 1.3em;
     font-family: 'Ubuntu';
+    outline: none;
+    border-top: 1px solid #DDD;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #BBB;
+    border-bottom: 1px solid #AAA;
+    border-radius: 5px;
+    transition: 0.2s;
+  }
+  #add_contact_section input[type=text]:focus, #add_contact_section input[type=email]:focus {
+    border-top: 1px solid #EDCB8C;
+    border-left: 1px solid #C9AD79;
+    border-right: 1px solid #C9AD79;
+    border-bottom: 1px solid #B09A71;
+    box-shadow: 1px 1px 4px #DBA848;
+    transition: 0.2s;
   }
 .col_label {
-  width: 100px;
+  width: 90px;
   text-align: center;
 }
 .col_smallfield {
-  width: 210px;
+  width: 220px;
 }
 .smallfield {
   width: 200px;
@@ -189,7 +249,7 @@ header h1 {
 
 }
 .largefield {
-  width: 535px;
+  width:528px;
 }
 .col_submit {
   text-align: center;
@@ -207,9 +267,13 @@ header h1 {
   border: 2px solid #F8F8F8;
   border-radius: 12px;
   box-shadow: 0px 4px 4px -4px rgba(0,0,0,0.7);
+  outline: none;
 }
 .col_submit input:hover {
   background: #50A7E3;
+}
+.col_submit input:active {
+  background: #333;
 }
 
 #added_contact_section {
@@ -356,7 +420,7 @@ header h1 {
   .note {
     font-size: 17px;
     font-family: 'Gafata';
-    padding: 5px;
+    padding: 5px 9px;
     outline: none;
     border: 0px;
     border-bottom: 1px dotted #AAA;
@@ -371,9 +435,8 @@ header h1 {
   width: 175px;
   height: 38px;
   margin: 10px 0px 20px 0px;
-  background: #428BBD;
+  background: #579E2E;
   color: #FFF;
-  text-shadow: 1px 1px 1px #2E668C;
   font-size: 20px;
   font-family: 'Ubuntu';
   font-weight: 700;
@@ -384,10 +447,16 @@ header h1 {
   transition: 0.2s;
 }
 #contact_submit:hover {
-  background: #50A7E3;
+  background: #6EB844;
+  text-shadow: 1px 1px 0px #579E2E;
   transition: 0.2s;
 }
 #contact_submit:active {
   background: #222;
   transition: 0s;
+}
+#cancel_edit {
+  text-align: center;
+  font-size: 13px;
+
 }
