@@ -3,8 +3,7 @@
  }
 
 body {
-  background: url('wood-bg.jpg');
-  background-size: 75% 75%;
+  background: url('woodbg.jpg');
   font-family: 'Ubuntu';
 }
 
@@ -98,6 +97,10 @@ header h1 {
   border: 1px dotted #999;
   background: #FFFFFF;
   }
+  .contacts_list > li:hover .c_delete {
+    opacity: 1.0;
+    transition: 0.3s;
+  }
 .c_id_div {
   position: absolute;
   background: #000;
@@ -168,6 +171,26 @@ header h1 {
     background: #50A7E3;
     text-shadow:1px 1px 1px #000;
     transition: 0.25s;
+  }
+.c_delete {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  opacity: 0;
+  transition: 0.3s;
+}
+.delete_button_contacts {
+  background: #A84D31;
+  width: 19px;
+  height: 19px;
+  border: 0px;
+  border-radius: 15px;
+  color: #FFF;
+  font-size: 9px;
+  text-shadow: 1px 1px 1px #A33417;
+}
+  .delete_button_contacts:hover {
+    background: #D9522F;
   }
 
 #search_div {

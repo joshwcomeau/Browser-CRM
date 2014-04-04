@@ -21,6 +21,13 @@
         <ul class="contacts_list">
           <% @results.each do |c| %>
           <li>
+            <div class="c_delete">
+              <form action="/contacts/<%= c.id %>/delete" method="post">
+                <input type="hidden" name="id" value="<%= c.id %>">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" name="submit" class="delete_button_contacts" value="X">
+              </form>
+            </div>
             <div class="c_id_div"><a href="/contacts/<%= c.id %>/edit" class="c_id_link"><%= c.id %></a></div>
             <h3 class="c_name"><a href="/contacts/<%= c.id %>/edit"><%= c.name %></a></h3>
             <p class="c_email"><%= c.email %></p>
