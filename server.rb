@@ -19,15 +19,10 @@ class Contact
   property :notes5, String
 
   property :created_at, DateTime
-  property :modified_at, DateTime
+  property :updated_at, DateTime
 
   DataMapper.finalize
   DataMapper.auto_upgrade!
-  
-  def time_format(t_obj)
-    puts "Time returning soon."
-  end
-
 
 end
 

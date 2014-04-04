@@ -50,8 +50,8 @@
               <li><%= c.notes1 %></li>
             </ol>
             <p class="c_dates">
-              <strong>Date Created:</strong> Temp<br>
-              <strong>Date Modified:</strong> Temp
+              <strong>Date Created:</strong> <%= c.created_at.to_s[0,10] + " at " + c.created_at.to_s[11,8] %><br>
+              <strong>Date Modified:</strong> <%= c.updated_at.to_s[0,10] + " at " + c.updated_at.to_s[11,8] %>
           </li>
           <% end %>
 

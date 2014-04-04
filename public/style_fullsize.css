@@ -448,7 +448,6 @@ header h1 {
     text-shadow: 1px 1px 2px #88BD42
   }
 #action_delete {
-  position: relative;
   background: #D9522F;
   border-radius: 0px 10px 10px 0px;
 }
@@ -457,17 +456,6 @@ header h1 {
     text-shadow: 1px 1px 2px #D9522F;
     border-radius: 0px 10px 10px 0px;
 
-  }
-  #secret_delete_button {
-    width: 138px;
-    height: 74px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background: transparent;
-    color: transparent;
-    border: 0px;
-    cursor: pointer;
   }
 
 /* EDIT CONTACT */

@@ -31,10 +31,14 @@
             </a>
           </div>
           <div id="action_delete" class="action">
-            <a href="/contacts/<%= @id %>/delete">
-              <div class="action_line1">KILL</div>
-              <div class="action_line2">This Bastard</div>
-            </a>
+            <form action="/contacts/<%= @id %>/delete" method="post">
+              <a>
+                <input type="hidden" name="_method" value="delete">
+                <input id="secret_delete_button" type="submit" value="">
+                <div class="action_line1">KILL</div>
+                <div class="action_line2">This Bastard</div>
+              </a>
+            </form>
           </div>
 
         </div>
