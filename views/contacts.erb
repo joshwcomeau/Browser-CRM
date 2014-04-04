@@ -5,19 +5,34 @@
         <div id="search" <%= ' style="display: none;"' unless @search_term %>>
           Search Results
           <div id="search_num">
-            Found <%= @results_num %> contacts that contain the term '<%= @search_term %>'.
+            Found <%= @results_num %> contacts that contain the term '<%= @term %>'.
           </div>
         </div>
       </section>
-      <div id="delete_confirm" <%= "style='display:none;'" unless @deleted %>>
-        Contact Deleted.
-      </div>
       <section id="contacts">
         <div id="search_div">
           <form action="/contacts" method="get">
             <input type="text" name="search" placeholder="Enter Search Term..." required><input type="submit" value="Search" id="search_submit">
           </form>
         </div>
+        <div id="delete_confirm" <%= "style='display:none;'" unless @deleted %>>
+          <form action="/contacts/confirm" method="post">
+            <input type="hidden" name="id" value="<%= @id %>">
+            <input type="hidden" name="first_name" value="<%= @name %>">
+            <input type="hidden" name="email" value="<%= @email %>">
+            <input type="hidden" name="notes1" value="<%= @notes1 %>">
+            <input type="hidden" name="notes2" value="<%= @notes2 %>">
+            <input type="hidden" name="notes3" value="<%= @notes3 %>">
+            <input type="hidden" name="notes4" value="<%= @notes4 %>">
+            <input type="hidden" name="notes5" value="<%= @notes5 %>">
+            <input type="hidden" name="action" value="restore">
+            Contact Deleted. <input type="submit" value="Undo Delete" id="undo_button">
+          </form>
+        </div>
+        <div id="restore_confirm" <%= "style='display:none;'" unless @restored %>>
+          Contact #<%= @id %> Restored!
+        </div>
+
         <ul class="contacts_list">
           <% @results.each do |c| %>
           <li>
@@ -32,11 +47,11 @@
             <h3 class="c_name"><a href="/contacts/<%= c.id %>/edit"><%= c.name %></a></h3>
             <p class="c_email"><%= c.email %></p>
             <ol id="notes_list">
-              <li><%= c.notes[0] %></li>
+              <li><%= c.notes1 %></li>
             </ol>
             <p class="c_dates">
-              <strong>Date Created:</strong> <%= c.created %><br>
-              <strong>Date Modified:</strong> <%= c.modified %>
+              <strong>Date Created:</strong> Temp<br>
+              <strong>Date Modified:</strong> Temp
           </li>
           <% end %>
 

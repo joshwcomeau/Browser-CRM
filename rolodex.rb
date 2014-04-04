@@ -5,8 +5,8 @@ class Rolodex
     @contacts = []
   end
 
-  def new_contact(name, email, notes)
-    @contacts << Contact.new(name, email, notes)
+  def new_contact(name, email, notes1, notes2, notes3, notes4, notes5)
+    @contacts << Contact.new(name, email, notes1, notes2, notes3, notes4, notes5)
   end
 
   def view_contacts

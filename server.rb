@@ -1,19 +1,59 @@
-require_relative 'contact'
 require_relative 'rolodex'
 require 'sinatra'
+require 'data_mapper'
+require 'dm-timestamps'
 
-def app_name
-  "Customer Relationship Management"
+DataMapper.setup(:default, "sqlite3:database.sqlite3")
+
+
+class Contact
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :name, String
+  property :email, String
+  property :notes1, String
+  property :notes2, String
+  property :notes3, String
+  property :notes4, String
+  property :notes5, String
+
+  property :created_at, DateTime
+  property :modified_at, DateTime
+
+  DataMapper.finalize
+  DataMapper.auto_upgrade!
+  
+  def time_format(t_obj)
+    puts "Time returning soon."
+  end
+
+
+end
+
+class Notes
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :fid, Serial
+
 end
 
 @@rolodex = Rolodex.new
+@@app_name = "Customer Relations Management"
 
 # Some sample contacts
-@@rolodex.new_contact("Joshua Comeau", "joshwcomeau@gmail.com", ["It's me! I created this neat little thing right?", "note 2"])
-@@rolodex.new_contact("James Dean", "singer@gmail.com", ["One of those celebrity people from before I was born."])
-@@rolodex.new_contact("Barack Obama", "president@usa.gov", ["43rd President of the United States. Should have hired me to make the ObamaCare website (I couldn't have done worse)."])
+# Contact.create(
+#   name: "Joshua Comeau",
+#   email: "joshwcomeau@gmail.com",
+#   notes1: "Got to school 5 minutes early today!",
+#   notes2: "What a trooper",
+#   notes3: "",
+#   notes4: "",
+#   notes5: ""
+# )
 
-@@app_name = app_name
+
 
 #### FUNCTIONS ####
 def gather_notes(data)
@@ -26,7 +66,6 @@ def gather_notes(data)
   notes
 end
 
-
 #### ROUTES ####
 get "/" do  
   erb :index 
@@ -37,19 +76,25 @@ get "/add" do    # View the 'add contact' page
   erb :new
 end
 
-get "/contacts" do        # View Contacts (all or search results)
+get "/contacts" do        # View Contacts
+  # View All
   if params.empty?
-    @results = @@rolodex.contacts
+    @results = Contact.all
     @header_msg = "Viewing All Contacts"
+
+  #View Search Results
   else
-    @search_term = params[:search]
-    @results = @@rolodex.contacts.select do |contact|
-      string = contact.name + contact.email
-      contact.notes.each do |note|
-        string += note
-      end
-      string.downcase.include?(@search_term.downcase)
-    end
+    @term = params[:search] 
+
+    @results =  Contact.all(id: @term) +
+                Contact.all(:name.like => "%"+@term+"%") +
+                Contact.all(:email.like => "%"+@term+"%") +
+                Contact.all(:notes1.like => "%"+@term+"%") +
+                Contact.all(:notes2.like => "%"+@term+"%") +
+                Contact.all(:notes3.like => "%"+@term+"%") +
+                Contact.all(:notes4.like => "%"+@term+"%") +
+                Contact.all(:notes5.like => "%"+@term+"%")
+                
     @header_msg = "Search Results:"
     @results_num = @results.length
   end
@@ -58,7 +103,7 @@ get "/contacts" do        # View Contacts (all or search results)
 end
 
 get "/contacts/:id/edit" do   # View Contact (editable)
-  @contact = @@rolodex.grab_contact(params[:id].to_i)
+  @contact = Contact.get(params[:id].to_i)
   if @contact
     erb :view
   else
@@ -66,44 +111,96 @@ get "/contacts/:id/edit" do   # View Contact (editable)
   end
 end
 
-post "/contacts/confirm" do       # Post a new contact
-  puts params
+post "/contacts/confirm" do       # Post a new contact or restore deleted
+
+  @id = params[:id] # Only set when restoring deletions
+
   @name = params[:first_name]
   @email = params[:email]
-  @notes = gather_notes(params)
+  @notes1 = params[:notes1]
+  @notes2 = params[:notes2]
+  @notes3 = params[:notes3]
+  @notes4 = params[:notes4]
+  @notes5 = params[:notes5]
 
-  @@rolodex.new_contact(@name, @email, @notes)
-  @id = @@rolodex.get_id_by_name(@name)
+  @action = params[:action]
 
-  erb :confirm
+  @contact = Contact.create(
+    name: @name,
+    email: @email,
+    notes1: @notes1,
+    notes2: @notes2,
+    notes3: @notes3,
+    notes4: @notes4,
+    notes5: @notes5
+  )
+  # If we're creating a new contact:
+  if @action == 'create'
+    
+    @id = @contact.id
+    @action_message = "Contact Created!"
+    erb :confirm
+
+  elsif @action == 'restore'
+    @contact.id = @id         # Restore the old ID
+    @contact.save             # Save!
+
+    @action_message = "Contact Restored!"
+
+    @restored = true
+    @results = Contact.all
+    erb :contacts
+  end
 end
 
 put "/contacts/savechanges" do    # Save changes to an edited contact
 
-  @contact = @@rolodex.grab_contact(params["id"].to_i)
+  @id = params[:id].to_i
+  @name = params[:first_name]
+  @email = params[:email]
+  @notes1 = params[:notes1]
+  @notes2 = params[:notes2]
+  @notes3 = params[:notes3]
+  @notes4 = params[:notes4]
+  @notes5 = params[:notes5]
 
-  @notes = gather_notes(params)
-  @name = params["first_name"]
-  @email = params["email"]
-  @id = params["id"].to_i
-
+  @contact = Contact.get(@id)
 
   @contact.name = @name
   @contact.email = @email
-  @contact.notes = @notes
+  @contact.notes1 = @notes1
+  @contact.notes2 = @notes2
+  @contact.notes3 = @notes3
+  @contact.notes4 = @notes4
+  @contact.notes5 = @notes5
+
+
+  @contact.save
+
   
   erb :confirm
 
 end
 
 delete "/contacts/:id/delete" do
-  @contact = @@rolodex.grab_contact(params[:id].to_i)
+  @contact = Contact.get(params[:id].to_i)
+
+  # Store data in instance variables before deletion for 'undo' function
+  @id = @contact.id
+  @name = @contact.name
+  @email = @contact.email
+  @notes1 = @contact.notes1
+  @notes2 = @contact.notes2
+  @notes3 = @contact.notes3
+  @notes4 = @contact.notes4
+  @notes5 = @contact.notes5
 
   if @contact
-    @@rolodex.delete_contact(@contact)
+    @contact.destroy
     @deleted = true
+    @results = Contact.all
 
-    redirect to("/contacts")
+    erb :contacts
   else
     raise Sinatra::NotFound
   end

@@ -92,10 +92,24 @@ header h1 {
     border: 1px dotted #DDD;
     border-radius: 5px;
     padding: 10px 20px;
+    -webkit-transform: scale(1,1);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+    -moz-transform: scale(1,1);
+    -moz-transition-timing-function: ease-out;
+    -moz-transition-duration: 250ms;
   }
   .contacts_list > li:hover {
-  border: 1px dotted #999;
-  background: #FFFFFF;
+    border: 1px dotted #999;
+    background: #FFFFFF;
+    -webkit-transform: scale(1.05,1.10);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+    -moz-transform: scale(1.05,1.10);
+    -moz-transition-timing-function: ease-out;
+    -moz-transition-duration: 250ms;
+    position: relative;
+    z-index: 99;
   }
   .contacts_list > li:hover .c_delete {
     opacity: 1.0;
@@ -188,13 +202,49 @@ header h1 {
   color: #FFF;
   font-size: 9px;
   text-shadow: 1px 1px 1px #A33417;
+  outline: none;
 }
   .delete_button_contacts:hover {
     background: #D9522F;
   }
-
+  .delete_button_contacts:active {
+    background: #FF3500;
+  }
+#delete_confirm {
+  margin-left: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #D9522F;
+  padding-top: 5px;
+  line-height: 22px;
+}
+#restore_confirm {
+  margin-left: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #6E9E2F;
+  padding-top: 5px;
+  line-height: 22px;
+}
+#undo_button {
+  height: 22px;
+  padding: 0px;
+  margin: 0px 10px;
+  background: transparent;
+  border: 0px;
+  font-size: 13px;
+  color: #5497C4;
+  outline: none;
+  cursor: pointer;
+}
+  #undo_button:hover {
+    color: #0097FF;
+    text-decoration: underline;
+  }
 #search_div {
+  width: 400px;
   text-align: right;
+  float: right;
   padding-right: 15px;
 }
   #search_div input[type=text] {
@@ -441,10 +491,16 @@ header h1 {
   color: #555;
   font-family: 'Gafata';
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   outline: none;
   background: transparent;
   border: 0px;
+}
+#contact_edit_instructions {
+  text-align: center;
+  margin: 6px 0px 20px 0px;
+  font-size: 12px;
+  color: #555;
 }
 #notes_holder {
   float: left;

@@ -7,15 +7,19 @@
       <input type="email" name="email" value="<%= @contact.email %>" id="contact_email" required>
     </div>
 
+    <div id="contact_edit_instructions">
+      (Click name or email to edit)
+    </div>
+
     <div id="notes_holder">
       <div id="notes_title">
         Notes
       </div>
       <div id="note_iterator">
       <% 
-        5.times do |iteration|
+        (1..5).each do |iteration|
       %>
-        <input type="text" value="<%= @contact.notes[iteration] %>" name="notes<%= iteration+1 %>" class="note" placeholder="Enter new note">
+        <input type="text" value="<%= @contact.send("notes" + iteration.to_s) %>" name="notes<%= iteration %>" class="note" placeholder="Enter new note">
       <% end %>
       </div>
     </div>
